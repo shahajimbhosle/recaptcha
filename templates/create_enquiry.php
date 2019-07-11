@@ -24,6 +24,10 @@
 		</li>
 
 		<li>
+			<div class="g-recaptcha" data-sitekey="xxxx"></div>	<?// Put your site key here?>
+		</li>
+
+		<li>
 			<input type="submit" value="Submit" />
 		</li>
 	</ul>
