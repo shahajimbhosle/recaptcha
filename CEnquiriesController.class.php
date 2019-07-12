@@ -7,6 +7,8 @@
 
 	class CEnquiriesController extends CBaseController {
 
+		protected $m_strRecaptchaSiteKey;
+
 		public function execute() {
 			switch( getAction() ) {
 				case 'create_enquiry':
@@ -25,6 +27,7 @@
 		//  Handle functions
 
 		public function handleCreateEnquiry() {
+			$this->m_strRecaptchaSiteKey = $this->getConfigKey( 'RECAPTCHA_SITE_KEY' );
 			$this->displayCreateEnquiry();
 		}
 
@@ -32,15 +35,16 @@
 			require_once 'CRecaptcha.class.php';
 
 			$objRecaptcha = new CRecaptcha();
-			var_dump( $objRecaptcha->verifyCaptcha( $_POST['g-recaptcha-response'] ) );
-
-			print_r( $objRecaptcha->getRecaptchaErrors() );
+			if( false == $objRecaptcha->verifyCaptcha( $_POST['g-recaptcha-response'], $this->getConfigKey( 'RECAPTCHA_SECRET_KEY' ) ) ) {
+				print_r( $objRecaptcha->getRecaptchaErrors() );
+			}
 		}
 
 		// Display functions
 
 		public function displayCreateEnquiry() {
-			$this->renderTemplate( 'create_enquiry' );
+			$arrmixParameter['recaptcha_site_key'] = $this->m_strRecaptchaSiteKey;
+			$this->renderTemplate( 'create_enquiry', $arrmixParameter );
 		}
 	}
 ?>

@@ -1,14 +1,11 @@
 <?php
 	class CRecaptcha {
-		private $m_strSiteKey = 'xxxx';		// Put your site key here
-		private $m_strSecretKey = 'xxxx';	// Put your secret key here
-
 		private $m_arrmixRecaptchaErrors = [];
 
-		public function verifyCaptcha( $strRecaptchaResponse ) {
+		public function verifyCaptcha( $strRecaptchaResponse, $strSecretkey ) {
 			require( PATH_RECAPTCHA_MASTER . 'src/autoload.php' );
 
-			$objRecaptcha = new \ReCaptcha\ReCaptcha( $this->m_strSecretKey );
+			$objRecaptcha = new \ReCaptcha\ReCaptcha( $strSecretkey );
 			$objResponse = $objRecaptcha->verify( $strRecaptchaResponse, $_SERVER['REMOTE_ADDR'] );
 
 			if( true == $objResponse->isSuccess() ) return true;

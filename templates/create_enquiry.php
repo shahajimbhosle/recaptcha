@@ -24,7 +24,7 @@
 		</li>
 
 		<li>
-			<div class="g-recaptcha" data-sitekey="xxxx"></div>	<?// Put your site key here?>
+			<div class="g-recaptcha" data-sitekey="<?=$recaptcha_site_key?>"></div>
 		</li>
 
 		<li>

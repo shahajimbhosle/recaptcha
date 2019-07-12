@@ -1,11 +1,10 @@
 <?php
 	/**
-	 * 
+	 * Base class for application
 	 */
 	class CBaseController {
 		
-		function __construct() {
-		}
+		function __construct() {}
 
 		// Framework methods
 		public function execute() {}
@@ -27,5 +26,10 @@
 		}
 
 		// Other methods
+
+		public function getConfigKey( $strKey ) {
+			include 'AppKeys.class.php';
+			return ( true == isset( AppKeys::$c_arrmixKeys[$strKey] ) ) ? AppKeys::$c_arrmixKeys[$strKey] : NULL;
+		}
 	}
 ?>
