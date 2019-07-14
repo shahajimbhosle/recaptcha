@@ -3,6 +3,19 @@ body {
 	padding: 10px;
 }
 
+pre {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.pure-table {
+	width: 100%;
+}
+
+.pure-table tbody tr:nth-child(odd) {
+	background-color: lightcyan;
+}
+
 .text-center {
 	text-align: center;
 }
